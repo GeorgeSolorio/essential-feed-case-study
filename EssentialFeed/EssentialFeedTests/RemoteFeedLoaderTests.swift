@@ -63,6 +63,18 @@ class RemoteFeedLoaderTests: XCTestCase {
         })
     }
     
+    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
+        let (sut, client) = makeSUT()
+
+        var capturedResults = [RemoteFeedLoader.Result]()
+        sut.load { capturedResults.append($0) }
+        
+        let emptyJsonList = Data("{\"items\": []}".utf8)
+        client.complete(withStatusCode: 200, data: emptyJsonList)
+        
+        XCTAssertEqual(capturedResults, [.success([])])
+    }
+    
     // Helpers
     private func expect(_ sut: RemoteFeedLoader, toCompleteWith result: RemoteFeedLoader.Result, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         var capturedResults = [RemoteFeedLoader.Result]()
