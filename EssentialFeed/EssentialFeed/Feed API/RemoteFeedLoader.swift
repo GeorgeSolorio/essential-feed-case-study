@@ -11,16 +11,13 @@ import Foundation
 public final class RemoteFeedLoader {
     private let url: URL
     private let client: HTTPClient
-    
+        
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
     }
     
-    public enum Result: Equatable {
-        case success([FeedItem])
-        case failure(Error)
-    }
+    public typealias Result = LoadFeedResult<Error>
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
