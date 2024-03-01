@@ -68,7 +68,7 @@ class URLSessionHTTPClientTests: XCTestCase {
                 XCTAssertEqual(receivedError.code, error.code)
                 XCTAssertEqual(receivedError.domain, error.domain)
             default:
-                XCTFail("Expected failure with error \(error), got result instead")
+                XCTFail("Expected failure with error \(error), got result \(result) instead")
             }
             
             exp.fulfill()
