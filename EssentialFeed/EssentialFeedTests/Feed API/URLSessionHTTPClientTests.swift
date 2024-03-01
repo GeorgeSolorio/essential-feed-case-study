@@ -39,7 +39,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     }
     
     func test_getFromURL_performsGETRequestWithURL() {
-        let url = URL(string: "http://any-url.com")!
+        let url = anyURL()
 
         let exp = expectation(description: "Wait for completion")
         
@@ -55,7 +55,6 @@ class URLSessionHTTPClientTests: XCTestCase {
     }
     
     func test_getFromURL_failsOnRequestError() {
-        let url = URL(string: "http://any-url.com")!
         let error = NSError(domain: "any error", code: 1)
         
         URLProtocolStub.stub(data: nil, response: nil, error: error)
@@ -63,7 +62,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         let sut = makeSUT()
         
         let exp = expectation(description: "Wait for completion")
-        sut.get(from: url) { result in
+        sut.get(from: anyURL()) { result in
             switch result {
             case let .failure(receivedError as NSError):
                 XCTAssertEqual(receivedError.code, error.code)
@@ -78,12 +77,15 @@ class URLSessionHTTPClientTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> URLSessionHTTPClient {
         let sut = URLSessionHTTPClient()
         trackForMemoryLeak(sut, file: file, line: line)
         return sut
+    }
+    
+    private func anyURL() -> URL {
+        return URL(string: "http://any-url.com")!
     }
     
     private class URLProtocolStub: URLProtocol {
