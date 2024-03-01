@@ -93,7 +93,7 @@ class URLSessionHTTPClientTests: XCTestCase {
                 XCTAssertEqual(receivedResponse.statusCode, response.statusCode)
                 XCTAssertEqual(receivedResponse.url, response.url)
             default:
-                XCTFail("Expected success, got \(response) instead")
+                XCTFail("Expected success, got \(result) instead")
             }
             exp.fulfill()
         }
@@ -114,7 +114,7 @@ class URLSessionHTTPClientTests: XCTestCase {
                 XCTAssertEqual(receivedResponse.statusCode, response.statusCode)
                 XCTAssertEqual(receivedResponse.url, response.url)
             default:
-                XCTFail("Expected success, got \(response) instead")
+                XCTFail("Expected success, got \(result) instead")
             }
             exp.fulfill()
         }
