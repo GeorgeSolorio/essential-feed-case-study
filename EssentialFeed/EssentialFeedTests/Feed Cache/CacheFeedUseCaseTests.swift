@@ -55,7 +55,7 @@ class CacheFeedUseCaseTests: XCTestCase {
     
     func test_save_doesNotRequestCacheInsertionOnDeletionError() {
         let (sut, store) = makeSUT()
-        let items = [uniqueItems(), uniqueItems()]
+        let items = [uniqueItem(), uniqueItem()]
         let deletionError = anyNSError()
         
         sut.save(items) { _ in }
@@ -68,7 +68,7 @@ class CacheFeedUseCaseTests: XCTestCase {
     func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
         let timestamp = Date()
         let (sut, store) = makeSUT(currentDate: { timestamp })
-        let items = [uniqueItems(), uniqueItems()]
+        let items = [uniqueItem(), uniqueItem()]
         
         sut.save(items) { _ in }
         
@@ -117,7 +117,7 @@ class CacheFeedUseCaseTests: XCTestCase {
     }
     
     private func expect(_ sut: LocalFeedLoader, toCompleteWithError expectedError: Error?, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
-        let items = [uniqueItems(), uniqueItems()]
+        let items = [uniqueItem(), uniqueItem()]
         var receivedError: Error?
 
         let exp = expectation(description: "Wait for save completion")
@@ -133,7 +133,7 @@ class CacheFeedUseCaseTests: XCTestCase {
         XCTAssertEqual(receivedError as NSError?, expectedError as NSError?, file: file, line: line)
     }
     
-    private func uniqueItems() -> FeedItem {
+    private func uniqueItem() -> FeedItem {
         return FeedItem(id: UUID(), description: "any", location: "any", imageURL: anyURL())
     }
     
