@@ -8,7 +8,7 @@
 import XCTest
 import EssentialFeed
 
-class LocalFeedStore {
+class LocalFeedLoader {
     private let store: FeedStore
     private let currentDate: () -> Date
     
@@ -106,9 +106,9 @@ class CacheFeedUseCaseTests: XCTestCase {
     }
     
     // Helpers
-    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalFeedStore, store: FeedStoreSpy) {
+    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalFeedLoader, store: FeedStoreSpy) {
         let store = FeedStoreSpy()
-        let sut = LocalFeedStore(store: store, currentDate: currentDate)
+        let sut = LocalFeedLoader(store: store, currentDate: currentDate)
         
         trackForMemoryLeak(store, file: file, line: line)
         trackForMemoryLeak(sut, file: file, line: line)
@@ -116,7 +116,7 @@ class CacheFeedUseCaseTests: XCTestCase {
         return (sut, store)
     }
     
-    private func expect(_ sut: LocalFeedStore, toCompleteWithError expectedError: Error?, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(_ sut: LocalFeedLoader, toCompleteWithError expectedError: Error?, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let items = [uniqueItems(), uniqueItems()]
         var receivedError: Error?
 
