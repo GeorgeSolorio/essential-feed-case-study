@@ -25,7 +25,7 @@ public final class LocalFeedLoader {
             if let cacheDeletionError = error {
                 completion(cacheDeletionError)
             } else {
-                cache(feed, with: completion)
+                self.cache(feed, with: completion)
             }
         }
     }
