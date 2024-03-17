@@ -75,22 +75,32 @@ Then the app should display an error message
 
 #### Primary course:
 1. Execute "Load Image Feed" command with above data.
-2. System fetches retrieves data from cache.
+2. System retrieves data from cache.
 3. System validates cache is less than seven days old.
 4. System creates image feed from cached data.
 5. System delivers image feed.
 
 #### Retrieval error course (sad path):
-1. System delivers cache.
 2. System delivers error.
 
 #### Expired cache course (sad path): 
 1. System delivers no feed items.
 
 #### Empty cache course (sad path): 
-1. System deletes cache.
 1. System delivers no image feed.
 
+### Validate Feed Cache Use Case
+
+#### Primary course:
+1. Execute "Validate Cache" command with above data.
+2. System retrieves data from cache.
+3. System validates cache is less than seven days old.
+
+#### Retrieval error course (sad path):
+1. System deletes cache.
+
+#### Expired cache course (sad path): 
+1. System deletes cache.
 
 ### Cache Feed Use Case
 
