@@ -59,7 +59,6 @@ class CodableFeedStore {
     }
     
     func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping FeedStore.InsertionCompletion) {
-        
         do {
             let encoder = JSONEncoder()
             let cache = Cache(feed: feed.map(CodableFeedImage.init), timestamp: timestamp)
@@ -72,6 +71,7 @@ class CodableFeedStore {
     }
     
     func deleteCachedFeed(completion: @escaping FeedStore.DeletionCompletion) {
+        try? FileManager.default.removeItem(at: storeURL)
         completion(nil)
     }
 }
@@ -172,6 +172,19 @@ class CodableFeedStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
         
         expect(sut, toRetrieveTwice: .empty)
+    }
+    
+    func test_delete_emptiesPreviosulyInsertedCache() {
+        let sut = makeSUT()
+        insert((uniqueImageFeed().local, Date()), to: sut)
+
+        let exp = expectation(description: "Wait for deletion completion")
+        sut.deleteCachedFeed { _ in
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        expect(sut, toRetrieve: .empty)
     }
     
     // MARK: Helpers
