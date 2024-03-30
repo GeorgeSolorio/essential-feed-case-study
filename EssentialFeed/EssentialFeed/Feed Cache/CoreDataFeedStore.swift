@@ -104,7 +104,7 @@ internal class ManagedCache: NSManagedObject {
         return feed.compactMap { ($0 as? ManagedFeedImage)?.local }
     }
     
-    public static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
+    static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
         let request = NSFetchRequest<ManagedCache>(entityName: ManagedCache.entity().name!)
         request.returnsObjectsAsFaults = false
         return try context.fetch(request).first
