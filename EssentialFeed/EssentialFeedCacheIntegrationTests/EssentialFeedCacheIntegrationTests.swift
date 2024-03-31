@@ -31,7 +31,7 @@ final class EssentialFeedCacheIntegrationTests: XCTestCase {
         let sutToPerformLoad = makeSUT()
         let feed = uniqueImageFeed().model
         
-        expect(sutToPerformSave, toSave: feed)
+        save(feed: feed, with: sutToPerformSave)
         
         expect(sutToPerformLoad, toLoad: feed)
     }
@@ -43,9 +43,8 @@ final class EssentialFeedCacheIntegrationTests: XCTestCase {
         let firstFeed = uniqueImageFeed().model
         let latestFeed = uniqueImageFeed().model
         
-        expect(sutToPerformFirstSave, toSave: firstFeed)
-        
-        expect(sutToPerformLastSave, toSave: latestFeed)
+        save(feed: firstFeed, with: sutToPerformFirstSave)
+        save(feed: latestFeed, with: sutToPerformLastSave)
         
         expect(sutToPerformLoad, toLoad: latestFeed)
     }
@@ -75,7 +74,7 @@ final class EssentialFeedCacheIntegrationTests: XCTestCase {
         wait(for: [loadExp], timeout: 1.0)
     }
     
-    private func expect(_ sut: LocalFeedLoader, toSave feed: [FeedImage]) {
+    private func save(feed: [FeedImage], with sut: LocalFeedLoader) {
         let exp = expectation(description: "Wait for save completion")
         sut.save(feed) { saveError in
             XCTAssertNil(saveError, "Expected to save feed successfully")
