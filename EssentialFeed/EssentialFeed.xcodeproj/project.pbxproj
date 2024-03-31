@@ -903,7 +903,7 @@
 			);
 			currentVersion = C03777182BB7D8B9003D0445 /* FeedStore.xcdatamodel */;
 			name = FeedStore.xcdatamodeld;
-			path = "/Users/georgesolorio/Desktop/essential-feed-case-study/EssentialFeed/EssentialFeed/Feed Cache/Infrustructure/FeedStore.xcdatamodeld";
+			path = "FeedStore.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
