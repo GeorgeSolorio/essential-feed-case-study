@@ -13,6 +13,7 @@
 		C00731962BC33B9C007AD44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C00731952BC33B9C007AD44E /* Assets.xcassets */; };
 		C00731992BC33B9C007AD44E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C00731982BC33B9C007AD44E /* Base */; };
 		C00731A12BC344FB007AD44E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00731A02BC344FB007AD44E /* FeedViewController.swift */; };
+		C00731A32BC34AC4007AD44E /* FeedImageView+PrototypeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00731A22BC34AC4007AD44E /* FeedImageView+PrototypeData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C00731982BC33B9C007AD44E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C007319A2BC33B9C007AD44E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C00731A02BC344FB007AD44E /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		C00731A22BC34AC4007AD44E /* FeedImageView+PrototypeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageView+PrototypeData.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				C00731972BC33B9C007AD44E /* LaunchScreen.storyboard */,
 				C007319A2BC33B9C007AD44E /* Info.plist */,
 				C00731A02BC344FB007AD44E /* FeedViewController.swift */,
+				C00731A22BC34AC4007AD44E /* FeedImageView+PrototypeData.swift */,
 			);
 			path = Prototype;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				C007318D2BC33B9B007AD44E /* AppDelegate.swift in Sources */,
 				C00731A12BC344FB007AD44E /* FeedViewController.swift in Sources */,
 				C007318F2BC33B9B007AD44E /* SceneDelegate.swift in Sources */,
+				C00731A32BC34AC4007AD44E /* FeedImageView+PrototypeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
