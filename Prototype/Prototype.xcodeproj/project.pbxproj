@@ -14,6 +14,7 @@
 		C00731992BC33B9C007AD44E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C00731982BC33B9C007AD44E /* Base */; };
 		C00731A12BC344FB007AD44E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00731A02BC344FB007AD44E /* FeedViewController.swift */; };
 		C00731A32BC34AC4007AD44E /* FeedImageView+PrototypeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00731A22BC34AC4007AD44E /* FeedImageView+PrototypeData.swift */; };
+		C00731A52BC34C32007AD44E /* FeedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00731A42BC34C32007AD44E /* FeedImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		C007319A2BC33B9C007AD44E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C00731A02BC344FB007AD44E /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		C00731A22BC34AC4007AD44E /* FeedImageView+PrototypeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageView+PrototypeData.swift"; sourceTree = "<group>"; };
+		C00731A42BC34C32007AD44E /* FeedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				C007319A2BC33B9C007AD44E /* Info.plist */,
 				C00731A02BC344FB007AD44E /* FeedViewController.swift */,
 				C00731A22BC34AC4007AD44E /* FeedImageView+PrototypeData.swift */,
+				C00731A42BC34C32007AD44E /* FeedImageCell.swift */,
 			);
 			path = Prototype;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				C00731A12BC344FB007AD44E /* FeedViewController.swift in Sources */,
 				C007318F2BC33B9B007AD44E /* SceneDelegate.swift in Sources */,
 				C00731A32BC34AC4007AD44E /* FeedImageView+PrototypeData.swift in Sources */,
+				C00731A52BC34C32007AD44E /* FeedImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
