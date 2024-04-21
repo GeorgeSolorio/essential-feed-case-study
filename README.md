@@ -1,6 +1,6 @@
 # Essential Feed! App – Image Feed Feature
 
-[![CI](https://github.com/GeorgeSolorio/essential-feed-case-study/actions/workflows/swift.yml/badge.svg)](https://github.com/GeorgeSolorio/essential-feed-case-study/actions/workflows/swift.yml)
+[![CI-macOS](https://github.com/GeorgeSolorio/essential-feed-case-study/actions/workflows/CI-macOS.yml/badge.svg)](https://github.com/GeorgeSolorio/essential-feed-case-study/actions/workflows/CI-macOS.yml)
 
 ## BDD Specs
 
