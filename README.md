@@ -2,6 +2,8 @@
 
 [![CI-macOS](https://github.com/GeorgeSolorio/essential-feed-case-study/actions/workflows/CI-macOS.yml/badge.svg)](https://github.com/GeorgeSolorio/essential-feed-case-study/actions/workflows/CI-macOS.yml)
 
+[![CI-iOS](https://github.com/GeorgeSolorio/essential-feed-case-study/actions/workflows/CI-iOS.yml/badge.svg)](https://github.com/GeorgeSolorio/essential-feed-case-study/actions/workflows/CI-iOS.yml)
+
 ## BDD Specs
 
 ### Story: Customer requests to see their image feed
