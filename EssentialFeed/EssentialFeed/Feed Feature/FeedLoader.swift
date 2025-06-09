@@ -1,17 +1,14 @@
 //
-//  FeedLoader.swift
-//  EssentialFeed
-//
-//  Created by George Solorio on 6/7/25.
+//  Copyright © Essential Developer. All rights reserved.
 //
 
 import Foundation
 
 enum LoadFeedResult {
-    case success([FeedItem])
-    case error(Error)
+	case success([FeedItem])
+	case error(Error)
 }
 
 protocol FeedLoader {
-    func load(completion: @escaping (LoadFeedResult) -> Void)
+	func load(completion: @escaping (LoadFeedResult) -> Void)
 }
