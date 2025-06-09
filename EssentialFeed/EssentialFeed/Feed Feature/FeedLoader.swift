@@ -1,5 +1,8 @@
 //
-//  Copyright © Essential Developer. All rights reserved.
+//  FeedLoader.swift
+//  EssentialFeed
+//
+//  Created by George Solorio on 6/8/25.
 //
 
 import Foundation
