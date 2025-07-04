@@ -7,12 +7,16 @@ on:
 jobs:
   build:
     name: Build and analyse default scheme using xcodebuild command
-    runs-on: macos-latest
+    runs-on: macos-15
+    timeout-minutes: 8
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_16.2.app
+        
       - name: Xcode version
         run: /usr/bin/xcodebuild -version
         
