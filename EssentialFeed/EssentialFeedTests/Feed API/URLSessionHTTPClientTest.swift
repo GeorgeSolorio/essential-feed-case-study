@@ -31,7 +31,7 @@ class URLSessionHTTPClientTest: XCTestCase {
         let url = URL(string: "http://any-url.com")!
         let expectedError = NSError(domain: "any error", code: 0, userInfo: nil)
         
-        URLProtocolStub.stub(url: url, data: nil, response: nil, error: expectedError)
+        URLProtocolStub.stub(data: nil, response: nil, error: expectedError)
         
         let sut = URLSessionHTTPClient()
         
@@ -55,7 +55,7 @@ class URLSessionHTTPClientTest: XCTestCase {
     // MARK: - Helpers
     
     private class URLProtocolStub: URLProtocol {
-        private static var stubs = [URL: Stub]()
+        private static var stub: Stub?
         
         private struct Stub {
             let data: Data?
@@ -63,14 +63,12 @@ class URLSessionHTTPClientTest: XCTestCase {
             let error: Error?
         }
         
-        static func stub(url: URL, data: Data?, response: URLResponse?, error: Error?) {
-            URLProtocolStub.stubs[url] = Stub(data: data, response: response, error: error)
+        static func stub(data: Data?, response: URLResponse?, error: Error?) {
+            URLProtocolStub.stub = Stub(data: data, response: response, error: error)
         }
         
         override class func canInit(with request: URLRequest) -> Bool {
-            guard let url = request.url else { return false }
-            
-            return URLProtocolStub.stubs[url] != nil
+            return true
         }
         
         override class func canonicalRequest(for request: URLRequest) -> URLRequest {
@@ -78,8 +76,7 @@ class URLSessionHTTPClientTest: XCTestCase {
         }
         
         override func startLoading() {
-            guard let url = request.url,
-                  let stub = URLProtocolStub.stubs[url] else {
+            guard let stub = URLProtocolStub.stub else {
                 return
             }
             
@@ -106,7 +103,7 @@ class URLSessionHTTPClientTest: XCTestCase {
         
         static func stopIntercepetingRequests() {
             URLProtocol.unregisterClass(URLProtocolStub.self)
-            stubs = [:]
+            stub = nil
         }
     }
 }
