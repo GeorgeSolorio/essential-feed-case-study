@@ -4,13 +4,14 @@
       "id" : "EB047650-5788-4014-A400-68627D91C804",
       "name" : "Test Scheme Action",
       "options" : {
-
+        "testExecutionOrdering" : "random",
+        "threadSanitizerEnabled" : false
       }
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
-    "performanceAntipatternCheckerEnabled" : true
+    "performanceAntipatternCheckerEnabled" : true,
+    "threadSanitizerEnabled" : true
   },
   "testTargets" : [
     {
