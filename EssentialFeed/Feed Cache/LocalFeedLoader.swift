@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class LocalFeedLoader {
+public final class LocalFeedLoader: FeedLoader {
     private let store: FeedStore
     private let currentDate: () -> Date
     private let maxCacheAgeInDays = 7
@@ -52,7 +52,7 @@ extension LocalFeedLoader {
 extension LocalFeedLoader {
     public typealias LoadResult = LoadFeedResult
 
-    public func load(with completion: @escaping (LoadResult) -> Void) {
+    public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve {  [weak self] result in
             guard let self = self else { return }
             
