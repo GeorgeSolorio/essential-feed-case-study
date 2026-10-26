@@ -169,12 +169,9 @@ class CodableFeedStoreTests: XCTestCase {
     func test_delete_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
         
-        let exp = expectation(description: "Wait for cache deletion")
-        sut.deleteCachedFeed { _ in
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
+        let deletionError = deleteCache(from: sut)
+        XCTAssertNil(deletionError, "Expected deletion on empty cache to be successful")
+
         expect(sut, toRetrieve: .empty)
     }
     
@@ -182,12 +179,9 @@ class CodableFeedStoreTests: XCTestCase {
         let sut = makeSUT()
         insert((uniqueImageFeed().local, Date()), to: sut)
             
-        let exp = expectation(description: "Wait for cache deletion")
-        sut.deleteCachedFeed { _ in
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
+        let deletionError = deleteCache(from: sut)
+        XCTAssertNil(deletionError, "Expected cache deletion to be successful")
+
         expect(sut, toRetrieve: .empty)
     }
     
@@ -195,18 +189,23 @@ class CodableFeedStoreTests: XCTestCase {
         let noDeletionPermissionURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
         let sut = makeSUT(storeURL: noDeletionPermissionURL)
         
+        let deletionError = deleteCache(from: sut)
+        XCTAssertNotNil(deletionError, "Expected error on deletion")
+    }
+    
+    // MARK: - Helpers
+    private func deleteCache(from sut: CodableFeedStore) -> Error? {
         let exp = expectation(description: "Wait for cache deletion")
-        var receivedError: Error?
+        var deletionError: Error?
         sut.deleteCachedFeed { error in
-            receivedError = error
+            deletionError = error
             exp.fulfill()
         }
         
         wait(for: [exp], timeout: 1.0)
-        XCTAssertNotNil(receivedError, "Expected error on deletion")
+        return deletionError
     }
     
-    // MARK: - Helpers
     @discardableResult
     private func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: CodableFeedStore) -> Error? {
         
