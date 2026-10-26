@@ -40,7 +40,6 @@ class CodableFeedStore {
         self.storeURL = storeURL
     }
     
-    
     func retrieve(completion: @escaping FeedStore.RetrievalCompletion) {
         guard let data = try? Data(contentsOf: storeURL) else {
             completion(.empty)
@@ -66,6 +65,10 @@ class CodableFeedStore {
         } catch {
             completion(error)
         }
+    }
+    
+    func deleteCachedFeed(completion: @escaping FeedStore.DeletionCompletion) {
+        
     }
 }
 
@@ -151,6 +154,14 @@ class CodableFeedStoreTests: XCTestCase {
         let insertionError = insert((feed, timestamp), to: sut)
         
         XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error")
+    }
+    
+    func test_delete_hasNoSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
+        
+        sut.deleteCachedFeed { _ in }
+        
+        expect(sut, toRetrieve: .empty)
     }
     
     // MARK: - Helpers
