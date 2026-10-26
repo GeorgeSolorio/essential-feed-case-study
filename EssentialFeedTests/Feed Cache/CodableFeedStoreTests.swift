@@ -165,8 +165,12 @@ class CodableFeedStoreTests: XCTestCase {
     func test_delete_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
         
-        sut.deleteCachedFeed { _ in }
+        let exp = expectation(description: "Wait for cache deletion")
+        sut.deleteCachedFeed { _ in
+            exp.fulfill()
+        }
         
+        wait(for: [exp], timeout: 1.0)
         expect(sut, toRetrieve: .empty)
     }
     
@@ -174,8 +178,12 @@ class CodableFeedStoreTests: XCTestCase {
         let sut = makeSUT()
         insert((uniqueImageFeed().local, Date()), to: sut)
             
-        sut.deleteCachedFeed { _ in }
+        let exp = expectation(description: "Wait for cache deletion")
+        sut.deleteCachedFeed { _ in
+            exp.fulfill()
+        }
         
+        wait(for: [exp], timeout: 1.0)
         expect(sut, toRetrieve: .empty)
     }
     
