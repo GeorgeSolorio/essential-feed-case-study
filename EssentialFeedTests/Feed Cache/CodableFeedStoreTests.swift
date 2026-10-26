@@ -115,7 +115,9 @@ class CodableFeedStoreTests: XCTestCase {
         let timestamp = Date()
             
         let exp = expectation(description: "Wait for retrieve completion")
-        sut.insert(feed, timestamp: timestamp) { _ in
+        sut.insert(feed, timestamp: timestamp) { insertionError in
+            XCTAssertNil(insertionError, "Expected feed to be inserted successfully")
+            
             sut.retrieve { retrieveResult in
                 switch (retrieveResult) {
                 case let .found(retrievedFeed, retrievedTimestamp):
