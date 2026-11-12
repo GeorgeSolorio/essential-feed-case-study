@@ -115,8 +115,7 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore {
         let noDeletionPermissionURL = userDirectoryURL()
         let sut = makeSUT(storeURL: noDeletionPermissionURL)
         
-        let deletionError = deleteCache(from: sut)
-        XCTAssertNotNil(deletionError, "Expected error on deletion")
+        assertThatDeleteDelieversErrorOnDeletionError(on: sut)
     }
     
     func test_delete_hasNoSideEffectsOnDeletionError() {

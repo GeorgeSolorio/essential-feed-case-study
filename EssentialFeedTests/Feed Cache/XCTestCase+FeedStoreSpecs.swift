@@ -85,12 +85,6 @@ extension FeedStoreSpecs where Self: XCTestCase {
         expect(sut, toRetrieve: .empty, file: file, line: line)
     }
     
-    func assertThatDeleteHasNoSideEffectsOnDeletionError(on sut: FeedStore, file: StaticString = #filePath, line: UInt = #line) {
-        deleteCache(from: sut)
-        
-        expect(sut, toRetrieveTwice: .empty, file: file, line: line)
-    }
-    
     func assertThatStoreSideEffectsRunSerially(on sut: FeedStore, file: StaticString = #filePath, line: UInt = #line) {
         var completedOperationsInOrder = [XCTestExpectation]()
         
