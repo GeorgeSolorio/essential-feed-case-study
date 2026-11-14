@@ -91,10 +91,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         return URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
     }
     
-    private func anyNSError() -> NSError {
-        return NSError(domain: "any error", code: 0)
-    }
-    
     private func resultFor(data: Data?, response: URLResponse?, error: Error?, file: StaticString = #filePath, line: UInt = #line) -> HTTPClientResult {
         URLProtocolStub.stub(data: data, response: response, error: error)
         
@@ -133,10 +129,6 @@ class URLSessionHTTPClientTests: XCTestCase {
             XCTFail("Expected failure, got \(result) instead", file: file, line: line)
             return nil
         }
-    }
-    
-    func anyURL() -> URL {
-        URL(string: "https://any-url.com")!
     }
     
     func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> URLSessionHTTPClient {
