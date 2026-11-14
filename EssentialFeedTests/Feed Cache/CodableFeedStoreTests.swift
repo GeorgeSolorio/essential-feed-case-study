@@ -112,14 +112,14 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore {
     }
     
     func test_delete_delieversErrorOnDeletionError() {
-        let noDeletionPermissionURL = userDirectoryURL()
+        let noDeletionPermissionURL = systemDirectoryURL()
         let sut = makeSUT(storeURL: noDeletionPermissionURL)
         
         assertThatDeleteDelieversErrorOnDeletionError(on: sut)
     }
     
     func test_delete_hasNoSideEffectsOnDeletionError() {
-        let noDeletionPermissionURL = userDirectoryURL()
+        let noDeletionPermissionURL = systemDirectoryURL()
         let sut = makeSUT(storeURL: noDeletionPermissionURL)
         
         assertThatDeleteHasNoSideEffectsOnDeletionError(on: sut)
@@ -138,8 +138,8 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore {
         return sut
     }
     
-    private func userDirectoryURL() -> URL {
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+    private func systemDirectoryURL() -> URL {
+        return FileManager.default.urls(for: .cachesDirectory, in: .systemDomainMask).first!
     }
     
     private func testSpecificStoreURL() -> URL {
