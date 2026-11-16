@@ -24,7 +24,7 @@ public class CoreDataFeedStore: FeedStore {
         let context = self.context
         context.perform {
             do {
-                let managedCache = ManagedCache(context: context)
+                let managedCache = try ManagedCache.newUniqueInstance(in: context)
                 managedCache.timestamp = timestamp
                 managedCache.feed = NSOrderedSet(array: feed.map { local in
                     let managed = ManagedFeedImage(context: context)
@@ -102,6 +102,21 @@ private extension NSManagedObjectModel {
 internal class ManagedCache: NSManagedObject {
     @NSManaged internal var timestamp: Date
     @NSManaged internal var feed: NSOrderedSet
+    
+    static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
+        let request = NSFetchRequest<ManagedCache>(entityName: entity().name!)
+        request.returnsObjectsAsFaults = false
+        return try context.fetch(request).first
+    }
+
+    static func newUniqueInstance(in context: NSManagedObjectContext) throws -> ManagedCache {
+        try find(in: context).map(context.delete)
+        return ManagedCache(context: context)
+    }
+    
+    var localFeed: [LocalFeedImage] {
+        return feed.compactMap { ($0 as? ManagedFeedImage)?.local }
+    }
 }
 
 @objc(ManagedFeedImage)
@@ -111,4 +126,19 @@ internal class ManagedFeedImage: NSManagedObject {
     @NSManaged internal var location: String?
     @NSManaged internal var url: URL
     @NSManaged internal var cache: ManagedCache
+    
+    static func images(from localFeed: [LocalFeedImage], in context: NSManagedObjectContext) -> NSOrderedSet {
+        return NSOrderedSet(array: localFeed.map { local in
+            let managed = ManagedFeedImage(context: context)
+            managed.id = local.id
+            managed.imageDescription = local.description
+            managed.location = local.location
+            managed.url = local.url
+            return managed
+        })
+    }
+    
+    var local: LocalFeedImage {
+        return LocalFeedImage(id: id, description: imageDescription, location: location, url: url)
+    }
 }
