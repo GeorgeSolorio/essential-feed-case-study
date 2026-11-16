@@ -17,7 +17,6 @@ protocol FeedStoreSpecs {
     
     func test_delete_delieversNoErrorOnNonEmptyCache()
     func test_delete_hasNoSideEffectsOnEmptyCache()
-    func test_delete_delieversErrorOnDeletionError()
     func test_delete_emptiesPreviouslyInsertedCache()
     
     func test_storeSideEffects_runSerially()
